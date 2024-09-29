@@ -6,42 +6,60 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.route.e_commercec40gsunwed.ui.theme.ECommerceC40GSunWedTheme
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.route.e_commercec40gsunwed.view.screen.AccountRoute
+import com.route.e_commercec40gsunwed.view.screen.AccountScreen
+import com.route.e_commercec40gsunwed.view.screen.CategoriesRoute
+import com.route.e_commercec40gsunwed.view.screen.CategoriesScreen
+import com.route.e_commercec40gsunwed.view.screen.HomeRoute
+import com.route.e_commercec40gsunwed.view.screen.HomeScreen
+import com.route.e_commercec40gsunwed.view.screen.WishListRoute
+import com.route.e_commercec40gsunwed.view.screen.WishListScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            ECommerceC40GSunWedTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            val navController = rememberNavController()
+
+
+            AppNavigation(navController = navController, modifier = Modifier.fillMaxSize())
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+fun AppNavigation(
+    modifier: Modifier,
+    navController: NavHostController,
+) {
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ECommerceC40GSunWedTheme {
-        Greeting("Android")
+    NavHost(
+        navController = navController,
+        startDestination = HomeRoute,
+        modifier = modifier
+    ) {
+        composable<HomeRoute> {
+            HomeScreen()
+        }
+
+        composable<CategoriesRoute> {
+            CategoriesScreen()
+        }
+
+        composable<WishListRoute> {
+            WishListScreen()
+        }
+
+        composable<AccountRoute> {
+            AccountScreen()
+        }
     }
 }

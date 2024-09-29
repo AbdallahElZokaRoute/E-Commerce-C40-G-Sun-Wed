@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">E-Commerce C40 GSun Wed</string>
+    <string name="what_do_you_want_to_search">What do you want to search for?</string>
+    <string name="image_slider">image slider</string>
+    <string name="categories">Categories</string>
+    <string name="view_all">View All</string>
 </resources>
