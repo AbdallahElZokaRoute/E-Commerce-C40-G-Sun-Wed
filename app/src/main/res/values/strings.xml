@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">E-Commerce C40 GSun Wed</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
 </resources>
