@@ -6,12 +6,14 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.route.e_commercec40gsunwed.view.composable.MyBottomAppBar
 import com.route.e_commercec40gsunwed.view.screen.AccountRoute
 import com.route.e_commercec40gsunwed.view.screen.AccountScreen
 import com.route.e_commercec40gsunwed.view.screen.CategoriesRoute
@@ -28,9 +30,12 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             val navController = rememberNavController()
+            Scaffold(bottomBar = {
+                MyBottomAppBar(navController = navController)
 
-
-            AppNavigation(navController = navController, modifier = Modifier.fillMaxSize())
+            }) { paddingValues ->
+                AppNavigation(navController = navController, modifier = Modifier.fillMaxSize().padding(paddingValues))
+            }
         }
     }
 }

@@ -35,13 +35,9 @@ object HomeRoute
 fun HomeScreen(modifier: Modifier = Modifier,vm:SearchViewModel= viewModel()) {
 
     val navHostController = rememberNavController()
-    Scaffold(bottomBar =  {
-        MyBottomAppBar(navController = navHostController)
 
-    }) { paddingValues ->
     LazyColumn(
         modifier = Modifier
-            .padding(paddingValues)
             .fillMaxSize()
             .padding(10.dp)
     ) {
@@ -76,8 +72,7 @@ fun HomeScreen(modifier: Modifier = Modifier,vm:SearchViewModel= viewModel()) {
             HomeAppliance()
         }
     }
-
-}}
+}
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
