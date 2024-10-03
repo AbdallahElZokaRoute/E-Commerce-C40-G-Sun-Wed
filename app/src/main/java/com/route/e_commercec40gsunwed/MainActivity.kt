@@ -65,7 +65,11 @@ fun AppNavigation(
         }
 
         composable<CategoriesRoute> {
-            CategoriesScreen()
+            val viewModel: CategoriesViewModel = viewModel()
+            CategoriesScreen(
+                categoriesViewModel = viewModel,
+                modifier = Modifier
+            )
         }
 
         composable<WishListRoute> {
@@ -74,13 +78,6 @@ fun AppNavigation(
 
         composable<AccountRoute> {
             AccountScreen()
-        }
-        composable("Categories_Screen") {
-            val viewModel: CategoriesViewModel = viewModel()
-            CategoriesScreen(
-                categoriesViewModel = viewModel,
-                modifier = Modifier
-            )
         }
     }
 }
