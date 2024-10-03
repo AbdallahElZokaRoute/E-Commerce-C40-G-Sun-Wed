@@ -22,20 +22,29 @@ import com.route.e_commercec40gsunwed.view.screen.HomeRoute
 import com.route.e_commercec40gsunwed.view.screen.HomeScreen
 import com.route.e_commercec40gsunwed.view.screen.WishListRoute
 import com.route.e_commercec40gsunwed.view.screen.WishListScreen
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.route.e_commercec40gsunwed.screens.CategoriesScreen
+import com.route.e_commercec40gsunwed.screens.CategoriesViewModel
+import com.route.e_commercec40gsunwed.ui.theme.ECommerceC40GSunWedTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             val navController = rememberNavController()
-            Scaffold(bottomBar = {
-                MyBottomAppBar(navController = navController)
 
-            }) { paddingValues ->
-                AppNavigation(navController = navController, modifier = Modifier.fillMaxSize().padding(paddingValues))
-            }
+//            Scaffold(bottomBar = {
+//                MyBottomAppBar(navController = navController)
+//
+//            }) { paddingValues ->
+//                AppNavigation(
+//                    navController = navController, modifier = Modifier
+//                        .fillMaxSize()
+//                        .padding(paddingValues)
+//                )
+//            }
         }
     }
 }
@@ -65,6 +74,13 @@ fun AppNavigation(
 
         composable<AccountRoute> {
             AccountScreen()
+        }
+        composable("Categories_Screen") {
+            val viewModel: CategoriesViewModel = viewModel()
+            CategoriesScreen(
+                categoriesViewModel = viewModel,
+                modifier = Modifier
+            )
         }
     }
 }
