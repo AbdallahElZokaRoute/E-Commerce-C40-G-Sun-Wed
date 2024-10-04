@@ -10,5 +10,3 @@ class CategoriesViewModel @Inject constructor(
 ) : ViewModel() {
     var categories = com.route.e_commercec40gsunwed.model.CategoriesList
 }
-// Regex => ahmed123@gmail.com
-//
