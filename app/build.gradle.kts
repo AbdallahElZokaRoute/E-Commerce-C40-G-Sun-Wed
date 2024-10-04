@@ -3,7 +3,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
     kotlin("plugin.serialization") version "2.0.20" // Replace with your Kotlin version
-
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -53,13 +54,8 @@ android {
 }
 
 dependencies {
-
-
     implementation(libs.androidx.constraintlayout.compose)
     implementation(libs.androidx.material.icons.extended)
-
-
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -75,11 +71,15 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     //image slider
-    implementation (libs.accompanist.pager)
-    implementation (libs.google.accompanist.pager.indicators)
+    implementation(libs.accompanist.pager)
+    implementation(libs.google.accompanist.pager.indicators)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.glide)
-
+    implementation(project(":domain"))
+    implementation(project(":data"))
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
+    implementation(libs.androidx.hilt.navigation.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -88,4 +88,9 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

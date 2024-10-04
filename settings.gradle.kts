@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "E-Commerce C40 GSun Wed"
 include(":app")
- 
+include(":data")
+include(":domain")

@@ -5,4 +5,8 @@
     <string name="image_slider">image slider</string>
     <string name="categories">Categories</string>
     <string name="view_all">View All</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="upper_light_content_description">Decorative graphic element at the top of the screen.</string>
+    <string name="route_logo_content_description">Route company logo.</string>
+    <string name="lower_light_content_description">Decorative graphic element at the bottom of the screen.</string>
 </resources>
