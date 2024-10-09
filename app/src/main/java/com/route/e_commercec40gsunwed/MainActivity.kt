@@ -25,6 +25,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.route.e_commercec40gsunwed.components.ProductGridRoute
 import com.route.e_commercec40gsunwed.screens.CategoriesScreen
 import com.route.e_commercec40gsunwed.screens.CategoriesViewModel
+import androidx.compose.ui.tooling.preview.Preview
+import com.route.e_commercec40gsunwed.categories.CategoriesScreen
 import com.route.e_commercec40gsunwed.ui.theme.ECommerceC40GSunWedTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -50,40 +52,43 @@ class MainActivity : ComponentActivity() {
 
         }
     }
-}
 
-@Composable
-fun AppNavigation(
-    modifier: Modifier,
-    navController: NavHostController,
-) {
-
-    NavHost(
-        navController = navController,
-        startDestination = HomeRoute,
-        modifier = modifier
+    @Composable
+    fun AppNavigation(
+        modifier: Modifier,
+        navController: NavHostController,
     ) {
-        composable<HomeRoute> {
-            HomeScreen()
-        }
 
-        composable<CategoriesRoute> {
-            val viewModel: CategoriesViewModel = viewModel()
-            CategoriesScreen(
-                categoriesViewModel = viewModel,
-                modifier = Modifier
-            )
-        }
+        NavHost(
+            navController = navController,
+            startDestination = HomeRoute,
+            modifier = modifier
+        ) {
+            composable<HomeRoute> {
+                HomeScreen()
+            }
 
-        composable<WishListRoute> {
-            WishListScreen()
-        }
+            composable<CategoriesRoute> {
+                val viewModel: CategoriesViewModel = viewModel()
+                CategoriesScreen(
+                    categoriesViewModel = viewModel,
+                    modifier = Modifier
+                )
+            }
 
-        composable<AccountRoute> {
-            AccountScreen()
-        }
-        composable<ProductGridRoute> {
-            ProductsGrid()
+            composable<WishListRoute> {
+                WishListScreen()
+            }
+
+            composable<AccountRoute> {
+                AccountScreen()
+            }
+            composable<ProductGridRoute> {
+                ProductsGrid()
+            }
+            composable<CategoriesRoute> {
+                CategoriesScreen()
+            }
         }
     }
 }

@@ -22,49 +22,64 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.route.e_commercec40gsunwed.R
 import com.route.e_commercec40gsunwed.model.Category
 import com.route.e_commercec40gsunwed.ui.theme.darkGray
 
 @Composable
-fun CategoryTitle(title: String, modifier: Modifier){
-    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween){
-        Text(title, style = MaterialTheme.typography.headlineSmall,
+fun CategoryTitle(title: String, modifier: Modifier) {
+    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+        Text(
+            title, style = MaterialTheme.typography.headlineSmall,
             fontWeight = FontWeight.SemiBold,
-            modifier = modifier, color = darkGray)
+            modifier = modifier, color = darkGray
+        )
 
-        Text("view all", style =  MaterialTheme.typography.bodyMedium, modifier = modifier, color = darkGray)
+        Text(
+            "view all",
+            style = MaterialTheme.typography.bodyMedium,
+            modifier = modifier,
+            color = darkGray
+        )
     }
 }
+
 @Composable
-fun CategoriesScreen(categoriesViewModel: CategoriesViewModel,modifier: Modifier) {
+fun CategoriesScreen(categoriesViewModel: CategoriesViewModel, modifier: Modifier) {
     Column(modifier = modifier.height(400.dp)) {
         CategoryTitle("Categories", Modifier.padding(20.dp))
         LazyHorizontalGrid(rows = GridCells.Fixed(2)) {
             items(categoriesViewModel.categories.size) { index ->
-                CategoryItem(categoriesViewModel.categories[index], Modifier.height(10.dp).padding(10.dp))
+                CategoryItem(
+                    categoriesViewModel.categories[index],
+                    Modifier
+                        .height(10.dp)
+                        .padding(10.dp)
+                )
             }
 
         }
     }
 }
+
 @Composable
 fun CategoryItem(category: Category, modifier: Modifier) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally){
-            CategoryImage(
-                modifier = Modifier
-                    .padding(5.dp)
-                    .width(100.dp)
-                    .height(100.dp)
-                    .clip(shape = CircleShape),
-                image = category.image,
-                ""
-            )
-            CategoryDescription(
-                text = category.imageDescription,
-                modifier = Modifier.padding(5.dp)
-            )
-        }
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        CategoryImage(
+            modifier = Modifier
+                .padding(5.dp)
+                .width(100.dp)
+                .height(100.dp)
+                .clip(shape = CircleShape),
+            image = category.Image,
+            ""
+        )
+        CategoryDescription(
+            text = category.text,
+            modifier = Modifier.padding(5.dp)
+        )
+    }
 }
 
 @Composable
@@ -74,25 +89,31 @@ fun CategoryDescription(modifier: Modifier, text: String) {
 
 @Composable
 fun CategoryImage(modifier: Modifier, image: Int, contentDescription: String) {
-    Image(painterResource(image) , contentDescription, modifier = modifier, contentScale = ContentScale.Crop)
+    Image(
+        painterResource(image),
+        contentDescription,
+        modifier = modifier,
+        contentScale = ContentScale.Crop
+    )
 
 }
 
 
 @Preview(showBackground = true)
 @Composable
-fun CategoryItemPreview(){
-CategoryItem(Category(R.drawable.girl, ""),modifier = Modifier.padding(10.dp))
+fun CategoryItemPreview() {
+    CategoryItem(Category(R.drawable.girl, ""), modifier = Modifier.padding(10.dp))
 }
 
-@Preview( showBackground = true)
-@Composable
-fun ListPreview(){
-    CategoriesScreen(CategoriesViewModel(), Modifier)
-}
 @Preview(showBackground = true)
 @Composable
-fun titlePreview(){
+fun ListPreview() {
+    CategoriesScreen(viewModel(), Modifier)
+}
+
+@Preview(showBackground = true)
+@Composable
+fun titlePreview() {
     CategoryTitle("Categories", Modifier.padding(vertical = 10.dp))
 
 }

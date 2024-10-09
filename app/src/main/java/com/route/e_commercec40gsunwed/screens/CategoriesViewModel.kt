@@ -8,5 +8,5 @@ import javax.inject.Inject
 class CategoriesViewModel @Inject constructor(
 
 ) : ViewModel() {
-    var categories = com.route.e_commercec40gsunwed.model.CategoriesList
+    var categories = com.route.e_commercec40gsunwed.model.categories
 }

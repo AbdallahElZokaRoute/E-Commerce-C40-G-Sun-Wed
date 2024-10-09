@@ -17,3 +17,6 @@ val darkGray = Color(0xff06004F)
 val NightBlue = Color(0xFF06004F)
 val Heather = Color(0xFFb3c6da)
 val FadedBlue = Color(0xFF668db4)
+
+val LightBlue = Color(0xFFEDF1F5)
+val DarkBlue = Color(0xFF06004F)
