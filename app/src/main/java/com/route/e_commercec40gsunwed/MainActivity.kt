@@ -17,15 +17,14 @@ import com.route.e_commercec40gsunwed.view.composable.MyBottomAppBar
 import com.route.e_commercec40gsunwed.view.screen.AccountRoute
 import com.route.e_commercec40gsunwed.view.screen.AccountScreen
 import com.route.e_commercec40gsunwed.view.screen.CategoriesRoute
-import com.route.e_commercec40gsunwed.view.screen.HomeRoute
-import com.route.e_commercec40gsunwed.view.screen.HomeScreen
+import com.route.e_commercec40gsunwed.view.screen.home.HomeRoute
+import com.route.e_commercec40gsunwed.view.screen.home.HomeScreen
 import com.route.e_commercec40gsunwed.view.screen.WishListRoute
 import com.route.e_commercec40gsunwed.view.screen.WishListScreen
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.route.e_commercec40gsunwed.components.ProductGridRoute
 import com.route.e_commercec40gsunwed.screens.CategoriesScreen
 import com.route.e_commercec40gsunwed.screens.CategoriesViewModel
-import androidx.compose.ui.tooling.preview.Preview
 import com.route.e_commercec40gsunwed.categories.CategoriesScreen
 import com.route.e_commercec40gsunwed.ui.theme.ECommerceC40GSunWedTheme
 import dagger.hilt.android.AndroidEntryPoint

@@ -5,4 +5,5 @@ import com.route.e_commercec40gsunwed.model.categories
 
 class CategoriesViewModel : ViewModel(){
     var categoriesList = categories
+
 }

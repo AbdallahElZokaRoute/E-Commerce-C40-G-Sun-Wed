@@ -58,4 +58,8 @@ object ApiManager {
         return retrofit.create(AuthService::class.java)
     }
 
+    @Provides
+    @Singleton
+    fun provideCategoriesService(retrofit: Retrofit) =
+        retrofit.create(CategoriesService::class.java)
 }

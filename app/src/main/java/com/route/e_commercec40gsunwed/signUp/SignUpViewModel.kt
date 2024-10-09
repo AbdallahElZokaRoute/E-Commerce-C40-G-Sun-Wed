@@ -7,14 +7,16 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.route.domain.entities.request.RegisterRequestEntity
-import com.route.domain.useCases.RegisterUseCase
+import com.route.domain.useCases.auth.RegisterUseCase
+import com.route.domain.useCases.auth.SetAccessTokenUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
-    private val registerUseCase: RegisterUseCase
+    private val registerUseCase: RegisterUseCase,
+    private val setAccessTokenUseCase: SetAccessTokenUseCase
 ) : ViewModel() {
     var fullNameTextField by mutableStateOf(TextFieldValue(""))
 
@@ -65,6 +67,8 @@ class SignUpViewModel @Inject constructor(
                         emailAddressTextField.text
                     )
                     val response = registerUseCase(request)
+                    // Store Access Token in Data Store
+                    setAccessTokenUseCase(response.token ?: "")
                     isSuccess = true
                 } catch (e: Exception) {
 

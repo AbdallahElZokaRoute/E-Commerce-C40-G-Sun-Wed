@@ -20,7 +20,7 @@
             android:label="@string/title_activity_sign_up"
             android:theme="@style/Theme.ECommerceC40GSunWed" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".splash.SplashActivity"
             android:exported="true"
             android:label="@string/title_activity_splash"
             android:theme="@style/Theme.ECommerceC40GSunWed">

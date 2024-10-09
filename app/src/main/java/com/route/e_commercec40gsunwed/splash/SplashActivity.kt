@@ -1,4 +1,4 @@
-package com.route.e_commercec40gsunwed
+package com.route.e_commercec40gsunwed.splash
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -23,6 +23,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.route.e_commercec40gsunwed.MainActivity
+import com.route.e_commercec40gsunwed.R
 import com.route.e_commercec40gsunwed.signUp.SignUpActivity
 import com.route.e_commercec40gsunwed.ui.theme.Blue
 import com.route.e_commercec40gsunwed.ui.theme.ECommerceC40GSunWedTheme
@@ -37,20 +40,30 @@ class SplashActivity : ComponentActivity() {
             ECommerceC40GSunWedTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     SplashActivityContent(modifier = Modifier.padding(innerPadding))
+                    val viewModel: SplashViewModel = hiltViewModel()
                     LaunchedEffect(key1 = Unit) {
+                        viewModel.checkAccessToken()
                         Handler(Looper.getMainLooper()).postDelayed({
-                            navigateToMainScreen()
+
                         }, 2000)
+                    }
+                    when (viewModel.navigationState.value) {
+                        SplashDestination.Home -> {
+                            val intent = Intent(this@SplashActivity, MainActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+
+                        SplashDestination.Idle -> {}
+                        SplashDestination.Login -> {
+                            val intent = Intent(this@SplashActivity, SignUpActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
                     }
                 }
             }
         }
-    }
-
-    private fun navigateToMainScreen() {
-        val intent = Intent(this@SplashActivity, SignUpActivity::class.java)
-        startActivity(intent)
-        finish()
     }
 }
 

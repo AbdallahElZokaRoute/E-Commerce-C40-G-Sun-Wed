@@ -3,8 +3,8 @@ package com.route.data.repository
 import com.route.domain.entities.AuthResponseEntity
 import com.route.domain.entities.request.LoginRequestEntity
 import com.route.domain.entities.request.RegisterRequestEntity
-import com.route.domain.repository.AuthOnlineDataSource
-import com.route.domain.repository.AuthRepository
+import com.route.domain.repository.auth.AuthOnlineDataSource
+import com.route.domain.repository.auth.AuthRepository
 
 class AuthRepositoryImpl(
     private val onlineDataSource: AuthOnlineDataSource

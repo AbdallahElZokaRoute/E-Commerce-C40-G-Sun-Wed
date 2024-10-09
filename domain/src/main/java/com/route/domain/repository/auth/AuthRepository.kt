@@ -1,4 +1,4 @@
-package com.route.domain.repository
+package com.route.domain.repository.auth
 
 import com.route.domain.entities.AuthResponseEntity
 import com.route.domain.entities.request.LoginRequestEntity
@@ -13,3 +13,5 @@ interface AuthOnlineDataSource {
     suspend fun login(requestEntity: LoginRequestEntity): AuthResponseEntity
     suspend fun register(requestEntity: RegisterRequestEntity): AuthResponseEntity
 }
+
+
