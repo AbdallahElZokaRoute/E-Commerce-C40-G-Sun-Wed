@@ -9,4 +9,5 @@
     <string name="upper_light_content_description">Decorative graphic element at the top of the screen.</string>
     <string name="route_logo_content_description">Route company logo.</string>
     <string name="lower_light_content_description">Decorative graphic element at the bottom of the screen.</string>
+    <string name="ok">OK</string>
 </resources>

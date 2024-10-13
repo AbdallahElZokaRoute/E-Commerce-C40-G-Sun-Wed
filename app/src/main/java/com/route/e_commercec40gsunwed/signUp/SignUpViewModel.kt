@@ -6,10 +6,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.route.domain.ApiResult
 import com.route.domain.entities.request.RegisterRequestEntity
 import com.route.domain.useCases.auth.RegisterUseCase
 import com.route.domain.useCases.auth.SetAccessTokenUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -33,6 +36,8 @@ class SignUpViewModel @Inject constructor(
     var passwordError by mutableStateOf("")
     var isSuccess by mutableStateOf(false)
 
+    val errorState = mutableStateOf("")
+    val isLoading = mutableStateOf(false)
     fun register() {
         var isFormValid = true
         fullNameError =
@@ -58,21 +63,35 @@ class SignUpViewModel @Inject constructor(
 
         if (isFormValid)
             viewModelScope.launch {
-                try {
-                    val request = RegisterRequestEntity(
-                        passwordTextField.text,
-                        phone = mobileNumberTextField.text,
-                        passwordTextField.text,
-                        name = fullNameTextField.text,
-                        emailAddressTextField.text
-                    )
-                    val response = registerUseCase(request)
-                    // Store Access Token in Data Store
-                    setAccessTokenUseCase(response.token ?: "")
-                    isSuccess = true
-                } catch (e: Exception) {
 
-                }
+                val request = RegisterRequestEntity(
+                    passwordTextField.text,
+                    phone = mobileNumberTextField.text,
+                    passwordTextField.text,
+                    name = fullNameTextField.text,
+                    emailAddressTextField.text
+                )
+                registerUseCase(request)
+                    .collect { response ->  // Consumer
+                        when (response) {
+                            is ApiResult.Error -> {
+                                errorState.value = response.errorMessage
+                                isLoading.value = false
+                            }
+
+                            is ApiResult.Loading -> {
+                                errorState.value = ""
+                                isLoading.value = true
+                            }
+
+                            is ApiResult.Success -> {
+                                setAccessTokenUseCase(response.data?.token ?: "")
+                                isSuccess = true
+                                isLoading.value = false
+                            }
+                        }
+                    }
+                // Store Access Token in Data Store
             }
     }
 }

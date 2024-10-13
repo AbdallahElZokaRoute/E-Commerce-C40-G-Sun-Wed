@@ -27,6 +27,7 @@ import com.route.e_commercec40gsunwed.screens.CategoriesScreen
 import com.route.e_commercec40gsunwed.screens.CategoriesViewModel
 import com.route.e_commercec40gsunwed.categories.CategoriesScreen
 import com.route.e_commercec40gsunwed.ui.theme.ECommerceC40GSunWedTheme
+import com.route.e_commercec40gsunwed.view.screen.home.HomeScreenRoute
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -64,7 +65,7 @@ class MainActivity : ComponentActivity() {
             modifier = modifier
         ) {
             composable<HomeRoute> {
-                HomeScreen()
+                HomeScreenRoute()
             }
 
             composable<CategoriesRoute> {

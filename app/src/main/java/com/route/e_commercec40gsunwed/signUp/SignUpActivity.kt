@@ -22,6 +22,7 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -47,6 +48,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.route.e_commercec40gsunwed.MainActivity
 import com.route.e_commercec40gsunwed.R
+import com.route.e_commercec40gsunwed.ui.theme.Blue
+import com.route.e_commercec40gsunwed.view.composable.ErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -150,15 +153,21 @@ fun SignUp(
                         .padding(8.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = Color.White)
                 ) {
-                    Text(
-                        text = "Sign Up",
-                        color = Color(0, 65, 130, 255),
-                        fontSize = 20.sp,
-                        textAlign = TextAlign.Center
-                    )
+                    if (viewModel.isLoading.value)
+                        CircularProgressIndicator(color = Blue)
+                    else
+                        Text(
+                            text = "Sign Up",
+                            color = Color(0, 65, 130, 255),
+                            fontSize = 20.sp,
+                            textAlign = TextAlign.Center
+                        )
                 }
             }
         }
+    }
+    if (viewModel.errorState.value.isNotEmpty()) {
+        ErrorDialog(errorState = viewModel.errorState)
     }
     if (viewModel.isSuccess) {
         val context = LocalContext.current

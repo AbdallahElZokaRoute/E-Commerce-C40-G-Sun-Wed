@@ -32,17 +32,14 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
+import com.route.domain.entities.categories.CategoryItemEntity
 import com.route.e_commercec40gsunwed.R
 import com.route.e_commercec40gsunwed.ui.theme.Blue
 import com.route.e_commercec40gsunwed.viewmodel.CategoriesViewModel
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun Categories(modifier: Modifier = Modifier, vm: CategoriesViewModel = hiltViewModel()) {
-    LaunchedEffect(key1 = Unit) {
-        vm.getCategories()
-    }
-
+fun Categories(categoriesList: List<CategoryItemEntity>, modifier: Modifier = Modifier) {
     Column {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -80,7 +77,7 @@ fun Categories(modifier: Modifier = Modifier, vm: CategoriesViewModel = hiltView
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            items(vm.categoriesState) { item ->
+            items(categoriesList) { item ->
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
@@ -109,5 +106,5 @@ fun Categories(modifier: Modifier = Modifier, vm: CategoriesViewModel = hiltView
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 private fun CategoriesPreview() {
-    Categories()
+    Categories(listOf())
 }
